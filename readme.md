@@ -55,7 +55,7 @@ acc = maml_model.prediction_acc(ts_dataset, num_inner_loop_test)
 ```
 
 ### Modification to ANIL
-The Almost No Inner Loop (ANIL) is a recently introduced model (see ref. 3). The model removes the inner loop for all but the last layer of the base model. My MAML implementation can be simply extended to ANIL by modifying the 24th line of maml.py. By changing the line to `self.weight_name = [name for name, _ in self.model.named_parameters()[-2:]]`, our code becomes ANIL.
+The Almost No Inner Loop (ANIL) is a recently introduced model (see ref. 3). The model removes the inner loop for all but the last layer of the base model. My MAML implementation can be simply extended to ANIL by modifying the 24th and 63rd lines of maml.py. By changing the line 24 to `self.weight_name = [name for name, _ in list(self.model.named_parameters()[-2:]])` and line 63 to `list(self.model.parameters())[-2:],`, our code becomes ANIL.
 
 
 ## Results
