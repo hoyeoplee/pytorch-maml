@@ -103,7 +103,7 @@ class maml(nn.Module):
                 loss = 0
                 for i in range(num_batch):
                     pred_query_y = self(x_spt[i], y_spt[i], x_qry[i])
-                    loss = self.loss(pred_query_y, y_qry[i])
+                    loss += self.loss(pred_query_y, y_qry[i])
                 loss /= num_batch
                 self.meta_optim.zero_grad()
                 loss.backward()
